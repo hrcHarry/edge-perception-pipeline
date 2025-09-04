@@ -1,4 +1,5 @@
 # Edge-ready Perception Pipeline
+
 PyTorch → ONNX → FastAPI → Docker. FER2013 baseline + robustness + Kalman smoothing + ONNXRuntime API.
 
 ## Quick Start
@@ -6,6 +7,7 @@ PyTorch → ONNX → FastAPI → Docker. FER2013 baseline + robustness + Kalman 
 pip install -r requirements.txt
 uvicorn src.train.infer_api:app --host 0.0.0.0 --port 8080
 # curl -F "file=@/path/to/img.jpg" http://127.0.0.1:8080/infer_form
+```
 
 
 
