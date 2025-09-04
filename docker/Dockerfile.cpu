@@ -1,0 +1,33 @@
+# Dockerfile.cpu
+FROM python:3.11-slim
+WORKDIR /app
+ENV PYTHONDONTWRITEBYTECODE=1 PIP_NO_CACHE_DIR=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libjpeg62-turbo libpng16-16 && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# 程式與模型、類別檔
+COPY src ./src
+COPY models/fer2013_cnn.onnx ./models/fer2013_cnn.onnx
+COPY classes.txt ./classes.txt
+
+# 讓 API 直接讀取類別文字
+ENV ONNX_PATH=models/fer2013_cnn.onnx
+ENV CLASSES_PATH=classes.txt
+
+CMD ["uvicorn", "src.train.infer_api:app", "--host", "0.0.0.0", "--port", "8080"]
+
+# Launch
+# <bash>
+# docker build -f Dockerfile.cpu -t edge-perception-api:cpu .
+# docker run --rm -p 8080:8080 edge-perception-api:cpu
+
+# Verified
+# curl -s http://127.0.0.1:8080/healthz
+# curl -s -X POST http://127.0.0.1:8080/infer_form \
+#   -F "file=@/path/to/picture_file" | jq
+
+

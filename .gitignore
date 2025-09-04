@@ -1,0 +1,26 @@
+# ---- Python 常見 ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ---- Jupyter Notebook 快取 ----
+.ipynb_checkpoints/
+
+# ---- 虛擬環境 ----
+.venv/
+env/
+venv/
+
+# ---- 資料與模型（避免上傳大檔）----
+data/
+models/
+models/*.pth
+results/
+*.zip
+*.tar
+*.tar.gz
+
+# ---- 系統雜項 ----
+.DS_Store
+Thumbs.db
