@@ -39,9 +39,9 @@ def load_class_names(path: str | None):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--onnx", default="models/fer2013_cnn.onnx")
-    ap.add_argument("--image", help="單張圖片路徑")
-    ap.add_argument("--folder", help="資料夾，遞迴讀取常見影像副檔名")
-    ap.add_argument("--classes", help="類別名稱檔，每行一個名稱（可選）")
+    ap.add_argument("--image", help="path of a single picture")
+    ap.add_argument("--folder", help="folder; read the extension of file")  #
+    ap.add_argument("--classes", help="(optional) names of classes; one line for one class")
     ap.add_argument("--out", default="results/infer_onnx.csv")
     args = ap.parse_args()
 

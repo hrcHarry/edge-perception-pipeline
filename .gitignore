@@ -14,8 +14,8 @@ venv/
 
 # ---- 資料與模型（避免上傳大檔）----
 data/
-models/
-models/*.pth
+# models/
+# models/*.pth
 results/
 *.zip
 *.tar
