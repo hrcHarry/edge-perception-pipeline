@@ -9,11 +9,15 @@ def train_model():
     device = torch.device(torch_device())
     train_loader, val_loader = get_fer2013_loaders()
 
+    print(f"Total training images: {len(train_loader.dataset)}")
+
     model = SimpleCNN(num_classes=7).to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
 
-    for epoch in range(5):  #  5 epoch as demo
+    training_epoches = 10  #  5 epoch as demo
+
+    for epoch in range(training_epoches):  #  5 epoch as demo
         model.train()
         running_loss = 0.0
         for inputs, labels in train_loader:
